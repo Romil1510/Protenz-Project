@@ -1,22 +1,46 @@
+import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+
 
 const Login = () => {
 
-    const [email,setEmail]=useState('')
+    const [username,setUsername]=useState('')
     const [password,setPassword]=useState('')
+    const navigate = useNavigate();
 
-    const handLogin=async (e)=>{
+   const handLogin = async (e) => {
         e.preventDefault()
-        if (!email || !password) {
-      alert("please required information")
-      return;
-    }
-    try {
         
+        if (!username || !password) {
+            alert("Please enter information")
+            return;
+        }
+
+         try {
+        const response = await axios.post("https://dummyjson.com/auth/login", {
+            username: username,
+            password: password,
+        });
+
+        const data = response.data;
+
+        toast.success("Login Successful");
+        localStorage.setItem("token", data.token); 
+        localStorage.setItem("user", JSON.stringify(data));
+        navigate("/profile");
+
     } catch (error) {
-        
+    
+        if (error.response && error.response.data) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.error("Something went wrong");
+        }
+        console.error("Login Error:", error);
     }
-    }
+};
 
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-br from-blue-100 to-indigo-300">
@@ -27,7 +51,7 @@ const Login = () => {
                 <div className="mb-5 ">
                     <label className="block text-[16px] font-medium text-gray-700 mb-2">UserName:</label>
                 <input className="p-3 rounded-lg w-full border border-gray-300 outline-none focus:border-blue-500 transition-all duration-400" 
-                onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter UserName" value={email}></input>
+                onChange={(e)=>setUsername(e.target.value)} type="text" placeholder="Enter UserName" value={username}></input>
 
                 </div>
             
