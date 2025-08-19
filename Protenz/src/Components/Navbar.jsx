@@ -14,8 +14,8 @@ export default function Navbar() {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
 
       
-      <h1 className="text-xl font-bold text-gray-900 md:text-left">Potenz Intern Task</h1>
-      <div className="flex flex-col md:flex-row md:space-x-10 space-x-14 items-center gap-3 md:gap-0">
+      <h1 className="text-xl font-bold text-gray-900 md:text-left justify-center items-center flex">Potenz Intern Task</h1>
+      <div className="flex flex-col md:flex-row items-center gap-3 md:gap-10">
         <Link to="/profile" className="text-gray-800 font-semibold text-[16px] hover:text-indigo-600">Profile</Link>
         <Link to="/products" className="text-gray-800 font-semibold text-[16px] hover:text-indigo-600">Products</Link>
         <button
