@@ -43,7 +43,7 @@ const Product=()=> {
         ))}
       </div>
 
-      <div className="flex justify-center mt-6 py-10">
+      <div className="flex justify-center mt-6 py-10 space-x-4">
         <button
           disabled={skip === 0}
           onClick={() => setSkip(skip - 10)}
